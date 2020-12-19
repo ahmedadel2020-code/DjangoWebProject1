@@ -1,7 +1,22 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-def index(request):
-    return HttpResponse("Hello, Django!")
+
 
 # Create your views here.
+from datetime import datetime
+
+from django.shortcuts import render
+def index(request):
+    now = datetime.now()
+
+    return render(
+        request,
+        "HealthTracking/index.html",  # Relative path from the 'templates' folder to the template file
+        # "index.html", # Use this code for VS 2017 15.7 and earlier
+        {
+            'title' : "Hello Django",
+            'message' : "Hello Django!",
+            'content' : " on " + now.strftime("%A, %d %B, %Y at %X")
+        }
+    )
